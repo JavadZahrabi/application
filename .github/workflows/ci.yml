@@ -16,14 +16,13 @@ env:
 jobs:
 
   build:
-    name: build
     runs-on: ubuntu-latest
     
     outputs:
       date: ${{ steps.tagInfo.outputs.date }}
       shaShort: ${{ steps.tagInfo.outputs.shaShort }}    
     
-    - steps:
+    steps:
       - uses: actions/checkout@v3
       
       - name: Get tag info
@@ -45,10 +44,9 @@ jobs:
           docker push $DOCKER_USER/$DOCKER_REPO_NAME:${{ steps.tagInfo.outputs.date }}-${{ steps.tagInfo.outputs.shaShort }}
 
   copy-dev-settings:
-    name: Replicate dev_setting
     runs-on: ubuntu-latest
      
-    - steps:
+    steps:
 
       - name: Checkout gitops-environment-promotion-source-code_02
         uses: actions/checkout@v3
