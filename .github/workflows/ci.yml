@@ -17,11 +17,11 @@ jobs:
 
   - name: build
 
-      runs-on: ubuntu-latest
-      
-      outputs:
-        date: ${{ steps.tagInfo.outputs.date }}
-        shaShort: ${{ steps.tagInfo.outputs.shaShort }}    
+    runs-on: ubuntu-latest
+    
+    outputs:
+      date: ${{ steps.tagInfo.outputs.date }}
+      shaShort: ${{ steps.tagInfo.outputs.shaShort }}    
     
     - steps:
       - uses: actions/checkout@v3
@@ -45,39 +45,39 @@ jobs:
           docker push $DOCKER_USER/$DOCKER_REPO_NAME:${{ steps.tagInfo.outputs.date }}-${{ steps.tagInfo.outputs.shaShort }}
 
   - name: dev_settings-replicate.yml
-      runs-on: ubuntu-latest
-      name: Replicate dev_setting
+    runs-on: ubuntu-latest
+    name: Replicate dev_setting
      
     - steps:
 
-        - name: Checkout gitops-environment-promotion-source-code_02
-          uses: actions/checkout@v3
-          with:
-            path: ./gitops-environment-promotion-source-code_02
+      - name: Checkout gitops-environment-promotion-source-code_02
+        uses: actions/checkout@v3
+        with:
+          path: ./gitops-environment-promotion-source-code_02
 
-        - name: Checkout gitops-environment-promotion_02
-          uses: actions/checkout@v3
-          with:
-            repository: JavadZahrabi/gitops-environment-promotion_02
-            token: ${{ secrets.ACTIONS_TOKEN }}
-            path: ./gitops-environment-promotion_02
-        
-        - name: Copy/Create file
-          run: |
-              FILE=./gitops-environment-promotion-source-code_02/environment-variables/dev/dev_settings.yml
-              if [ -f "$FILE" ]; then
-                echo "Copying $FILE"
-                cp -R ./gitops-environment-promotion-source-code_02/environment-variables/dev/dev_settings.yml ./gitops-environment-promotion_02/envs/dev
-              else
-                echo "Creating $FILE"
-                touch ./gitops-environment-promotion_02/envs/dev/dev_settings.yml
-              fi
+      - name: Checkout gitops-environment-promotion_02
+        uses: actions/checkout@v3
+        with:
+          repository: JavadZahrabi/gitops-environment-promotion_02
+          token: ${{ secrets.ACTIONS_TOKEN }}
+          path: ./gitops-environment-promotion_02
+      
+      - name: Copy/Create file
+        run: |
+            FILE=./gitops-environment-promotion-source-code_02/environment-variables/dev/dev_settings.yml
+            if [ -f "$FILE" ]; then
+              echo "Copying $FILE"
+              cp -R ./gitops-environment-promotion-source-code_02/environment-variables/dev/dev_settings.yml ./gitops-environment-promotion_02/envs/dev
+            else
+              echo "Creating $FILE"
+              touch ./gitops-environment-promotion_02/envs/dev/dev_settings.yml
+            fi
 
-        - name: Push gitops-environment-promotion_02
-          run: |
-            cd ./gitops-environment-promotion_02
-            git add .
-            git config user.name ci
-            git config user.email ci@github.com
-            git commit -am "dev_setting.yml replicated from gitops-environment-promotion-source-code_02"
-            git push
+      - name: Push gitops-environment-promotion_02
+        run: |
+          cd ./gitops-environment-promotion_02
+          git add .
+          git config user.name ci
+          git config user.email ci@github.com
+          git commit -am "dev_setting.yml replicated from gitops-environment-promotion-source-code_02"
+          git push
