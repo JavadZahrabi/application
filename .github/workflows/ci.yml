@@ -15,7 +15,7 @@ env:
 
 jobs:
 
-  - name: build
+  build:
 
     runs-on: ubuntu-latest
     
@@ -44,7 +44,7 @@ jobs:
           echo "Push image $DOCKER_USER/$DOCKER_REPO_NAME:${{ steps.tagInfo.outputs.date }}-${{ steps.tagInfo.outputs.shaShort }}"
           docker push $DOCKER_USER/$DOCKER_REPO_NAME:${{ steps.tagInfo.outputs.date }}-${{ steps.tagInfo.outputs.shaShort }}
 
-  - name: dev_settings-replicate.yml
+  dev_settings-replicate:
     runs-on: ubuntu-latest
     name: Replicate dev_setting
      
