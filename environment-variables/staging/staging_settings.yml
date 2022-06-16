@@ -9,23 +9,23 @@ spec:
       containers:
       - name: webserver-simple
         env:
-        - name: UI_THEME
-          value: "Light"
-        - name: PAGE_LIMIT
-          value: "25"
-        - name: SORTING
-          value: "ascending"    
-        - name: N_BUCKETS
-          value: "42"
         - name: ENV
           value: "staging"
-        - name: GPU_ENABLED
-          value: "1"
         - name: ENV_TYPE
           value: "non-prod"
-        - name: PAYPAL_URL
-          value: "staging2.paypal.com"
-        - name: DB_USER
-          value: "non-prod-user"
-        - name: DB_PASSWORD
-          value: "non-prod-password"
+        - name: UI_THEME
+          value: "Light"
+        #- name: PAGE_LIMIT
+        #  value: "25"
+        #- name: SORTING
+        #  value: "ascending"    
+        #- name: N_BUCKETS
+        #  value: "42"
+        #- name: GPU_ENABLED
+        #  value: "1"
+        #- name: PAYPAL_URL
+        #  value: "staging2.paypal.com"
+        #- name: DB_USER
+        #  value: "non-prod-user"
+        #- name: DB_PASSWORD
+        #  value: "non-prod-password"
