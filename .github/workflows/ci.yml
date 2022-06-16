@@ -44,6 +44,7 @@ jobs:
           docker push $DOCKER_USER/$DOCKER_REPO_NAME:${{ steps.tagInfo.outputs.date }}-${{ steps.tagInfo.outputs.shaShort }}
 
   copy-dev-settings:
+    needs: build
     runs-on: ubuntu-latest
      
     steps:
