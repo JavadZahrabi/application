@@ -74,7 +74,7 @@ jobs:
       - name: check if there is change
         id: verify_diff
         run: |
-            git diff ./gitops-environment-promotion-source-code_02/environment-variables/dev/dev_settings.yml || echo "::set-output name=change::true"
+            git diff --quiet ./gitops-environment-promotion-source-code_02/environment-variables/dev/dev_settings.yml || echo "::set-output name=change::true"
 
       - name: Push gitops-environment-promotion_02
         if: steps.verify_diff.outputs.change == 'true'
