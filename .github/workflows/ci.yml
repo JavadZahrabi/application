@@ -71,8 +71,13 @@ jobs:
               echo "Creating $FILE"
               touch ./gitops-environment-promotion_02/envs/dev/dev_settings.yml
             fi
+      - name: check if there is change
+        id: verify_diff
+        run: |
+            git diff ./gitops-environment-promotion-source-code_02/environment-variables/dev/dev_settings.yml || echo "::set-output name=change::true"
 
       - name: Push gitops-environment-promotion_02
+        if: steps.verify_diff.outputs.change == 'true'
         run: |
           cd ./gitops-environment-promotion_02
           git add .
