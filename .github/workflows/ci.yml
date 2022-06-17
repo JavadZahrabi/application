@@ -61,14 +61,14 @@ jobs:
           token: ${{ secrets.ACTIONS_TOKEN }}
           path: ./gitops-environment-promotion_02
       
-      - name: Copy/Create file
+      - name: Copy & push dev_settings
         run: |
             FILE1=./gitops-environment-promotion-source-code_02/environment-variables/dev/dev_settings.yml
             FILE2=./gitops-environment-promotion_02/envs/dev/dev_settings.yml
             if cmp -s "$FILE1" "$FILE2"; then
-              echo "files are same"
+              echo "dev_settings are same"
             else
-              echo "files are different"
+              echo "dev_settings are different"
               cp -R ./gitops-environment-promotion-source-code_02/environment-variables/dev/dev_settings.yml ./gitops-environment-promotion_02/envs/dev
               cd ./gitops-environment-promotion_02
               git add .
