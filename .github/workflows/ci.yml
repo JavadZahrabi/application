@@ -65,7 +65,7 @@ jobs:
         run: |
             FILE1=./gitops-environment-promotion-source-code_02/environment-variables/dev/dev_settings.yml
             FILE2=./gitops-environment-promotion_02/envs/dev/dev_settings.yml
-            if [ cmp "$FILE1" "FILE2" ]; then
+            if [ cmp FILE1 FILE2 ]; then
               echo "files are different"
               cp -R ./gitops-environment-promotion-source-code_02/environment-variables/dev/dev_settings.yml ./gitops-environment-promotion_02/envs/dev
             else
