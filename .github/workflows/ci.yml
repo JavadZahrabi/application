@@ -77,3 +77,21 @@ jobs:
               git commit -am "dev_setting.yml replicated from gitops-environment-promotion-source-code_02"
               git push
             fi
+
+      - name: update image tag
+        run: |
+            export tag=${{needs.build.outpust.date}}-${{needs.build.outputs.shaShort}}
+
+            echo update Docker Image tag on dev
+            cd ./gitops-environment-promotion_02/envs/dev
+            kustomize edit set image docker.io/javadza/environment-promotion=docker.io/javadza/environment-promotion:${tag}
+
+            echo push new tag to dev
+            git add .
+            git config user.name ci
+            git config user.email ci@github.com
+            git commit -am "update dev image tag in environment repository"
+            git push
+
+
+
