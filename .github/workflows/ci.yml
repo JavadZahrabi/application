@@ -70,13 +70,10 @@ jobs:
             else
               echo "files are different"
               cp -R ./gitops-environment-promotion-source-code_02/environment-variables/dev/dev_settings.yml ./gitops-environment-promotion_02/envs/dev
+              cd ./gitops-environment-promotion_02
+              git add .
+              git config user.name ci
+              git config user.email ci@github.com
+              git commit -am "dev_setting.yml replicated from gitops-environment-promotion-source-code_02"
+              git push
             fi
-
-      - name: Push gitops-environment-promotion_02
-        run: |
-          cd ./gitops-environment-promotion_02
-          git add .
-          git config user.name ci
-          git config user.email ci@github.com
-          git commit -am "dev_setting.yml replicated from gitops-environment-promotion-source-code_02"
-          git push
