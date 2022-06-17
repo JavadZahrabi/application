@@ -60,8 +60,14 @@ jobs:
           repository: JavadZahrabi/gitops-environment-promotion_02
           token: ${{ secrets.ACTIONS_TOKEN }}
           path: ./gitops-environment-promotion_02
+
+      - name: check if there is change
+        id: verify_diff
+        run: |
+            git diff --quiet ./gitops-environment-promotion-source-code_02/environment-variables/dev/dev_settings.yml || echo "::set-output name=change::true"
       
       - name: Copy/Create file
+        if: steps.verify_diff.outputs.change == 'true'
         run: |
             FILE=./gitops-environment-promotion-source-code_02/environment-variables/dev/dev_settings.yml
             if [ -f "$FILE" ]; then
@@ -71,13 +77,8 @@ jobs:
               echo "Creating $FILE"
               touch ./gitops-environment-promotion_02/envs/dev/dev_settings.yml
             fi
-      - name: check if there is change
-        id: verify_diff
-        run: |
-            git diff --quiet ./gitops-environment-promotion-source-code_02/environment-variables/dev/dev_settings.yml || echo "::set-output name=change::true"
 
       - name: Push gitops-environment-promotion_02
-        if: steps.verify_diff.outputs.change == 'true'
         run: |
           cd ./gitops-environment-promotion_02
           git add .
