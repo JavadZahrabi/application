@@ -2,4 +2,4 @@
 
 This is a very simple web application that gets configuration from environment variables and prints them out.
 
-test git diff 5
+test git diff 6
