@@ -69,7 +69,7 @@ jobs:
               echo "Copying $FILE"
               cp -R ./gitops-environment-promotion-source-code_02/environment-variables/dev/dev_settings.yml ./gitops-environment-promotion_02/envs/dev
             else
-              echo "Creating $FILE"
+              echo "Creating $FILE1"
               touch ./gitops-environment-promotion_02/envs/dev/dev_settings.yml
             fi
 
