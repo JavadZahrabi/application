@@ -80,7 +80,7 @@ jobs:
 
       - name: update image tag
         run: |
-            export tag=${{needs.build.outpust.date}}-${{needs.build.outputs.shaShort}}
+            export tag=${{needs.build.outputs.date}}-${{needs.build.outputs.shaShort}}
 
             echo update Docker Image tag on dev
             cd ./gitops-environment-promotion_02/envs/dev
