@@ -129,7 +129,7 @@ jobs:
             echo push new staging-setting and new Tag to branch staging
 
             cd ../..
-            git checkout -b "staging"
+            git checkout staging
             git add .
             git config user.name ci
             git config user.email ci@github.com
