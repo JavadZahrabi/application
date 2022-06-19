@@ -2,4 +2,4 @@
 
 This is a very simple web application that gets configuration from environment variables and prints them out.
 
-test copy image tag one push 2
+test staging 1
