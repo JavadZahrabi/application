@@ -54,7 +54,7 @@ func healthHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 
 	clh := configurationListHandler{}
-	clh.version = os.Getenv("image")
+	clh.version = os.Getenv("newTag")
 	clh.environment = os.Getenv("ENV")
 	clh.environment_type = os.Getenv("ENV_TYPE")
 	clh.ui_theme = os.Getenv("UI_THEME")
