@@ -78,7 +78,7 @@ jobs:
               git push
             fi
 
-      - name: update image tag
+      - name: update dev image tag
         run: |
             export tag=${{needs.build.outputs.date}}-${{needs.build.outputs.shaShort}}
 
@@ -93,5 +93,30 @@ jobs:
             git commit -am "update dev image tag in environment repository"
             git push
 
+      - name: Copy & push staging_settings
+        run: |
+            FILE1=./gitops-environment-promotion-source-code_02/environment-variables/staging/staging_settings.yml
+            FILE2=./gitops-environment-promotion_02/envs/staging/staging_settings.yml
+            if cmp -s "$FILE1" "$FILE2"; then
+              echo "staging_settings are same"
+            else
+              echo "staging_settings are different"
+              cp -R ./gitops-environment-promotion-source-code_02/environment-variables/staging/staging_settings.yml ./gitops-environment-promotion_02/envs/staging
+            fi
+
+            export tag=${{needs.build.outputs.date}}-${{needs.build.outputs.shaShort}}
+
+            echo update Docker Image tag on staging
+            cd ./gitops-environment-promotion_02/envs/staging
+            kustomize edit set image docker.io/javadza/environment-promotion=docker.io/javadza/environment-promotion:${tag}
+
+      - name: create pull request staging
+        id: cpr
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.ACTIONS_TOKEN }}
+          commit-message: update setting and tag of staging
+
+            
 
 
