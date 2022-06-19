@@ -134,4 +134,4 @@ jobs:
             git config user.name ci
             git config user.email ci@github.com
             git commit -am "update staging-setting and image tag in environment repository"
-            git push --set-upstream origin staging
+            git push --set-upstream -f origin staging
