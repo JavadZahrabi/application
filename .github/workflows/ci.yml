@@ -78,8 +78,6 @@ jobs:
               git push
             fi
 
-      - name: update dev image tag
-        run: |
             export tag=${{needs.build.outputs.date}}-${{needs.build.outputs.shaShort}}
 
             echo update Docker Image tag on dev
@@ -87,13 +85,12 @@ jobs:
             kustomize edit set image docker.io/javadza/environment-promotion=docker.io/javadza/environment-promotion:${tag}
 
             echo push new tag to dev
+
+            cd ..
+            cd ..
+            
             git add .
             git config user.name ci
             git config user.email ci@github.com
             git commit -am "update dev image tag in environment repository"
-            git push
-
-
-            
-
-
+            git push          
