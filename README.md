@@ -2,4 +2,4 @@
 
 This is a very simple web application that gets configuration from environment variables and prints them out.
 
-test image tag 3
+test local host version 1
