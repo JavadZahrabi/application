@@ -43,7 +43,7 @@ jobs:
           echo "Push image $DOCKER_USER/$DOCKER_REPO_NAME:${{ steps.tagInfo.outputs.date }}-${{ steps.tagInfo.outputs.shaShort }}"
           docker push $DOCKER_USER/$DOCKER_REPO_NAME:${{ steps.tagInfo.outputs.date }}-${{ steps.tagInfo.outputs.shaShort }}
 
-  copy-dev-settings:
+  copy settings and update tag for dev staging prod:
     needs: build
     runs-on: ubuntu-latest
      
