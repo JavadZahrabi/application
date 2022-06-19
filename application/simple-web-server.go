@@ -8,6 +8,7 @@ import (
 
 type configurationListHandler struct {
 	version           string
+	newTag			  string
 	environment       string
 	environment_type  string
 	ui_theme          string
@@ -28,6 +29,7 @@ func (h *configurationListHandler) ServeHTTP(w http.ResponseWriter, r *http.Requ
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	fmt.Fprintf(w, "<h2>I am a GO application running inside Kubernetes.<h2> <h3>My properties are:</h3><ul>")
 	fmt.Fprintf(w, "<li>version: "+h.version+"</li>")
+	fmt.Fprintf(w, "<li>newTag: "+h.newTag+"</li>")
 	fmt.Fprintf(w, "<li>environment: "+h.environment+"</li>")
 	fmt.Fprintf(w, "<li>environment_type: "+h.environment_type+"</li>")
 	fmt.Fprintf(w, "<li>ui_theme: "+h.ui_theme+"</li>")
@@ -55,6 +57,7 @@ func main() {
 
 	clh := configurationListHandler{}
 	clh.version = "3.0"
+	clh.version = os.Getenv("newTag")
 	clh.environment = os.Getenv("ENV")
 	clh.environment_type = os.Getenv("ENV_TYPE")
 	clh.ui_theme = os.Getenv("UI_THEME")
