@@ -71,6 +71,7 @@ jobs:
               echo "dev_settings are different"
               cp -R ./gitops-environment-promotion-source-code_02/environment-variables/dev/dev_settings.yml ./gitops-environment-promotion_02/envs/dev
               cd ./gitops-environment-promotion_02
+              echo "copy done"
             fi
 
             export tag=${{needs.build.outputs.date}}-${{needs.build.outputs.shaShort}}
@@ -79,13 +80,11 @@ jobs:
             cd ./gitops-environment-promotion_02/envs/dev
             kustomize edit set image docker.io/javadza/environment-promotion=docker.io/javadza/environment-promotion:${tag}
 
-            echo push new tag to dev
+            echo push new dev-setting and new Tag to master-dev
 
-            cd ..
-            cd ..
-            
+            cd ../..
             git add .
             git config user.name ci
             git config user.email ci@github.com
-            git commit -am "update dev image tag in environment repository"
+            git commit -am "update dev-setting and image tag in environment repository"
             git push          
