@@ -160,7 +160,7 @@ jobs:
               echo "prod_settings are same"
             else
               echo "prod_settings are different"
-              cp -R ./gitops-environment-promotion-source-code_02/environment-variables/prod/prod_settings.yml ./gitops-environment-promotion_02/envs/pro
+              cp -R ./gitops-environment-promotion-source-code_02/environment-variables/prod/prod_settings.yml ./gitops-environment-promotion_02/envs/prod
               echo "copy done"
             fi
 
