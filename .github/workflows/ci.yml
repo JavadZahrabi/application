@@ -116,7 +116,6 @@ jobs:
             else
               echo "staging_settings are different"
               cp -R ./gitops-environment-promotion-source-code_02/environment-variables/staging/staging_settings.yml ./gitops-environment-promotion_02/envs/staging
-              cd ./gitops-environment-promotion_02
               echo "copy done"
             fi
 
