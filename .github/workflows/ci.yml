@@ -152,7 +152,7 @@ jobs:
           token: ${{ secrets.ACTIONS_TOKEN }}
           path: ./gitops-environment-promotion_02
       
-      - name: Copy & push staging_settings
+      - name: Copy & push prod_settings
         run: |
             FILE1=./gitops-environment-promotion-source-code_02/environment-variables/prod/prod_settings.yml
             FILE2=./gitops-environment-promotion_02/envs/prod/prod_settings.yml
@@ -177,5 +177,5 @@ jobs:
             git add .
             git config user.name ci
             git config user.email ci@github.com
-            git commit -am "update prod-setting and image tag in environment repository"
+            git commit -am "update prod-setting and image tag ${tag} in environment repository"
             git push --set-upstream -f origin prod
