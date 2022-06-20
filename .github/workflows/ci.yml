@@ -70,7 +70,6 @@ jobs:
             else
               echo "dev_settings are different"
               cp -R ./gitops-environment-promotion-source-code_02/environment-variables/dev/dev_settings.yml ./gitops-environment-promotion_02/envs/dev
-              cd ./gitops-environment-promotion_02
               echo "copy done"
             fi
 
