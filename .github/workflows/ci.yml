@@ -83,8 +83,8 @@ jobs:
 
             cd ../..
             git add .
-            git config user.name ci
-            git config user.email ci@github.com
+            git config user.name JavadZahrabi
+            git config user.email ja.zahrabi@gmail.com
             git commit -am "update dev-setting and image tag in environment repository"
             git push   
 
@@ -175,7 +175,7 @@ jobs:
             cd ../..
             git checkout -b "prod"
             git add .
-            git config user.name ci
-            git config user.email ci@github.com
+            git config user.name JavadZahrabi
+            git config user.email ja.zahrabi@gmail.com
             git commit -am "update prod-setting and image tag ${tag} in environment repository"
             git push --set-upstream -f origin prod
