@@ -129,8 +129,8 @@ jobs:
             cd ../..
             git checkout -b "staging"
             git add .
-            git config user.name ci
-            git config user.email ci@github.com
+            git config user.name JavadZahrabi
+            git config user.email ja.zahrabi@gmail.com
             git commit -am "update staging-setting and image tag in environment repository"
             git push --set-upstream -f origin staging
 
