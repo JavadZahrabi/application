@@ -14,7 +14,7 @@ spec:
         - name: ENV_TYPE
           value: "non-prod"
         - name: UI_THEME
-          value: "Light"
+          value: "Dark"
         #- name: PAGE_LIMIT
         #  value: "25"
         #- name: SORTING
