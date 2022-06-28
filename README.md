@@ -1,6 +1,6 @@
 # How to Model Your Gitops Environments
 
-This is a very simple web application that gets configuration from environment variables and prints them out.
+This is a very simple web application that gets configuration from environment variables and prints them out. You might want to see the [deployment repository as well.](https://github.com/JavadZahrabi/gitops-environment-promotion_02)
 
 This sample project is deliberately simplified to illustrate the core concepts, events and issues. It is a fictitious cloud-native microservice project that uses the Scrum approach model.
 
