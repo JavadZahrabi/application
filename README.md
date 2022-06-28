@@ -4,4 +4,4 @@ This is a very simple web application that gets configuration from environment v
 
 new feature
 
-![Project Process](./documentation/Master_thesis_project_process.png)
+![Project Process](./documentation/Master_thesis_project_process.png?raw=true "Project Process")
