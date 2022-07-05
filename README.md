@@ -14,3 +14,6 @@ The project uses Git to manage the source code of the microservice. The branchin
 Git events include the push to the main branch, which occurs via the merge of the feature branch pull request, as well as the merges of the "Deploy to STAGING" and "Deploy to PROD" pull requests. When a feature-Branch pull request is merged, the CI pipeline creates a release candidate artifact that is then automatically deployed to the DEV environment by the CD. The artifact is a Docker image containing the compiled application. Als Docker Image Tag wird die Release Version verwendet. Releases are uniquely versioned using the scheme YYY-MM-DD-Short Commit Hash, e.g. "2022-06-12-858cc39".
 
 The deployment to STAGING and PROD is done by a manual trigger. The "Deploy to STAGING" and "Deploy to PROD" pull request merge events are used for this purpose. Only the PO or the DevOps role is allowed to merge these two pull requests.
+
+
+ETAS test
