@@ -49,34 +49,34 @@ jobs:
      
     steps:
 
-      - name: Checkout gitops-environment-promotion-source-code_02
+      - name: Checkout application repository
         uses: actions/checkout@v3
         with:
-          path: ./gitops-environment-promotion-source-code_02
+          path: ./application
 
-      - name: Checkout gitops-environment-promotion_02
+      - name: Checkout deployment repository
         uses: actions/checkout@v3
         with:
-          repository: JavadZahrabi/gitops-environment-promotion_02
+          repository: JavadZahrabi/deployment
           token: ${{ secrets.ACTIONS_TOKEN }}
-          path: ./gitops-environment-promotion_02
+          path: ./deployment
       
       - name: Copy & push dev_settings
         run: |
-            FILE1=./gitops-environment-promotion-source-code_02/environment-variables/dev/dev_settings.yml
-            FILE2=./gitops-environment-promotion_02/envs/dev/dev_settings.yml
+            FILE1=./application/environment-variables/dev/dev_settings.yml
+            FILE2=./deployment/envs/dev/dev_settings.yml
             if cmp -s "$FILE1" "$FILE2"; then
               echo "dev_settings are same"
             else
               echo "dev_settings are different"
-              cp -R ./gitops-environment-promotion-source-code_02/environment-variables/dev/dev_settings.yml ./gitops-environment-promotion_02/envs/dev
+              cp -R ./application/environment-variables/dev/dev_settings.yml ./deployment/envs/dev
               echo "copy done"
             fi
 
             export tag=${{needs.build.outputs.date}}-${{needs.build.outputs.shaShort}}
 
             echo update Docker Image tag on dev
-            cd ./gitops-environment-promotion_02/envs/dev
+            cd ./deployment/envs/dev
             kustomize edit set image docker.io/javadza/environment-promotion=docker.io/javadza/environment-promotion:${tag}
 
             echo push new dev-setting and new Tag to master-dev
@@ -85,7 +85,7 @@ jobs:
             git add .
             git config user.name JavadZahrabi
             git config user.email ja.zahrabi@gmail.com
-            git commit -am "update dev-setting and image tag in environment repository"
+            git commit -am "update dev-setting and image tag in deployment repository"
             git push   
 
   copy-push-staging-setting-update-image-tag-PR:
@@ -94,34 +94,34 @@ jobs:
      
     steps:
 
-      - name: Checkout gitops-environment-promotion-source-code_02
+      - name: Checkout application repository
         uses: actions/checkout@v3
         with:
-          path: ./gitops-environment-promotion-source-code_02
+          path: ./application
 
-      - name: Checkout gitops-environment-promotion_02
+      - name: Checkout deployment repository
         uses: actions/checkout@v3
         with:
-          repository: JavadZahrabi/gitops-environment-promotion_02
+          repository: JavadZahrabi/deployment
           token: ${{ secrets.ACTIONS_TOKEN }}
-          path: ./gitops-environment-promotion_02
+          path: ./deployment
       
       - name: Copy & push staging_settings
         run: |
-            FILE1=./gitops-environment-promotion-source-code_02/environment-variables/staging/staging_settings.yml
-            FILE2=./gitops-environment-promotion_02/envs/staging/staging_settings.yml
+            FILE1=./application/environment-variables/staging/staging_settings.yml
+            FILE2=./deployment/envs/staging/staging_settings.yml
             if cmp -s "$FILE1" "$FILE2"; then
               echo "staging_settings are same"
             else
               echo "staging_settings are different"
-              cp -R ./gitops-environment-promotion-source-code_02/environment-variables/staging/staging_settings.yml ./gitops-environment-promotion_02/envs/staging
+              cp -R ./application/environment-variables/staging/staging_settings.yml ./deployment/envs/staging
               echo "copy done"
             fi
 
             export tag=${{needs.build.outputs.date}}-${{needs.build.outputs.shaShort}}
 
             echo update Docker Image tag on dev
-            cd ./gitops-environment-promotion_02/envs/staging
+            cd ./deployment/envs/staging
             kustomize edit set image docker.io/javadza/environment-promotion=docker.io/javadza/environment-promotion:${tag}
 
             echo push new staging-setting and new Tag to branch staging
@@ -131,7 +131,7 @@ jobs:
             git add .
             git config user.name JavadZahrabi
             git config user.email ja.zahrabi@gmail.com
-            git commit -am "update staging-setting and image tag in environment repository"
+            git commit -am "update staging-setting and image tag in deployment repository"
             git push --set-upstream -f origin staging
 
   copy-push-prod-setting-update-image-tag-PR:
@@ -140,34 +140,34 @@ jobs:
      
     steps:
 
-      - name: Checkout gitops-environment-promotion-source-code_02
+      - name: Checkout deployment repository
         uses: actions/checkout@v3
         with:
-          path: ./gitops-environment-promotion-source-code_02
+          path: ./deployment
 
-      - name: Checkout gitops-environment-promotion_02
+      - name: Checkout deployment repository
         uses: actions/checkout@v3
         with:
-          repository: JavadZahrabi/gitops-environment-promotion_02
+          repository: JavadZahrabi/deployment
           token: ${{ secrets.ACTIONS_TOKEN }}
-          path: ./gitops-environment-promotion_02
+          path: ./deployment
       
       - name: Copy & push prod_settings
         run: |
-            FILE1=./gitops-environment-promotion-source-code_02/environment-variables/prod/prod_settings.yml
-            FILE2=./gitops-environment-promotion_02/envs/prod/prod_settings.yml
+            FILE1=./application/environment-variables/prod/prod_settings.yml
+            FILE2=./deployment/envs/prod/prod_settings.yml
             if cmp -s "$FILE1" "$FILE2"; then
               echo "prod_settings are same"
             else
               echo "prod_settings are different"
-              cp -R ./gitops-environment-promotion-source-code_02/environment-variables/prod/prod_settings.yml ./gitops-environment-promotion_02/envs/prod
+              cp -R ./application/environment-variables/prod/prod_settings.yml ./deployment/envs/prod
               echo "copy done"
             fi
 
             export tag=${{needs.build.outputs.date}}-${{needs.build.outputs.shaShort}}
 
             echo update Docker Image tag on prod
-            cd ./gitops-environment-promotion_02/envs/prod
+            cd ./deployment/envs/prod
             kustomize edit set image docker.io/javadza/environment-promotion=docker.io/javadza/environment-promotion:${tag}
 
             echo push new prod-setting and new Tag to branch prod
@@ -177,5 +177,5 @@ jobs:
             git add .
             git config user.name JavadZahrabi
             git config user.email ja.zahrabi@gmail.com
-            git commit -am "update prod-setting and image tag ${tag} in environment repository"
+            git commit -am "update prod-setting and image tag ${tag} in deployment repository"
             git push --set-upstream -f origin prod
