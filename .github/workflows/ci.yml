@@ -140,10 +140,10 @@ jobs:
      
     steps:
 
-      - name: Checkout deployment repository
+      - name: Checkout application repository
         uses: actions/checkout@v3
         with:
-          path: ./deployment
+          path: ./application
 
       - name: Checkout deployment repository
         uses: actions/checkout@v3

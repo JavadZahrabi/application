@@ -15,4 +15,4 @@ Git events include the push to the main branch, which occurs via the merge of th
 
 The deployment to STAGING and PROD is done by a manual trigger. The "Deploy to STAGING" and "Deploy to PROD" pull request merge events are used for this purpose. Only the PO or the DevOps role is allowed to merge these two pull requests.
 
-test changed repo name
+test
