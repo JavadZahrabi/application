@@ -29,3 +29,5 @@ spec:
         #  value: "prod_username"
         #- name: DB_PASSWORD
         #  value: "prod_password"
+        #- name: "EXTERNAL_SYSTEM_HOST"
+        #  value: "ext-system.com"

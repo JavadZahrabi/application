@@ -21,8 +21,8 @@ type configurationListHandler struct {
 	page_limit        string
 	sorting           string
 	number_of_buckets string
-	*/
 	external_system_host string
+	*/
 }
 
 func (h *configurationListHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
@@ -42,8 +42,8 @@ func (h *configurationListHandler) ServeHTTP(w http.ResponseWriter, r *http.Requ
 	fmt.Fprintf(w, "<li>page_limit: "+h.page_limit+"</li>")
 	fmt.Fprintf(w, "<li>sorting: "+h.sorting+"</li>")
 	fmt.Fprintf(w, "<li>number_of_buckets: "+h.number_of_buckets+"</li>")
-	*/
 	fmt.Fprintf(w, "<li>external_system_host: "+h.external_system_host+"</li>")
+	*/
 	fmt.Fprintf(w, "</ol>")
 
 }
@@ -70,8 +70,8 @@ func main() {
 	clh.page_limit = os.Getenv("PAGE_LIMIT")
 	clh.sorting = os.Getenv("SORTING")
 	clh.number_of_buckets = os.Getenv("N_BUCKETS")
-	*/
 	clh.external_system_host = os.Getenv("EXTERNAL_SYSTEM_HOST")
+	*/
 	fmt.Println("Simple web server is starting on port 8080...")
 	http.Handle("/", &clh)
 	http.HandleFunc("/health", healthHandler)
